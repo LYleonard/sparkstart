@@ -19,15 +19,20 @@ object ConMysql {
     val spark = SparkSession.builder().appName("MysqlQueryDemo")
       .master("local").getOrCreate()
 
-    val jdbcDF = spark.read
-      .format("jdbc")
-      .option("driver", "com.mysql.jdbc.Driver")
-      .option("url", "jdbc:mysql://localhost:3306/band?useUnicode=true&characterEncoding=utf-8")
-      .option("dbtable", "accounts")
-      .option("user", "root")
-      .option("password", "243015")
-      .load()
-    jdbcDF.show()
+    def QueryMysqlTable(): DataFrame = {
+      val jdbcDF = spark.read
+        .format("jdbc")
+        .option("driver", "com.mysql.jdbc.Driver")
+        .option("url", "jdbc:mysql://localhost:3306/band?useUnicode=true&characterEncoding=utf-8")
+        .option("dbtable", "accounts")
+        .option("user", "root")
+        .option("password", "243015")
+        .load()
+      jdbcDF.show()
+      jdbcDF
+    }
+
+    val jdbcDF: DataFrame = QueryMysqlTable()
 
     UpdateMysql(jdbcDF)
   }
