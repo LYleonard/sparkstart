@@ -3,16 +3,18 @@ package cn.wrp
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * * @Description 累加器：Accumulator是spark提供的累加器，该变量只能够增加。
-  * * 只有driver能获取到Accumulator的值（使用value方法），Task只能对其做增加操作（使用 +=）。
-  * * 你也可以为Accumulator命名，这样就会在spark web ui中显示，可以帮助你了解程序运行的情况。
+  * * @Description 累加器：累加器是仅通过关联和交换操作“添加”的变量，因此可以并行有效地支持。
+  * * 它们可用于实现计数器（如MapReduce）或总和。Spark本身支持数值类型的累加器，程序员可以添加对新类型的支持。
+  * * 作为用户，您可以创建命名或未命名的累加器。如下图所示，命名累加器（在此实例中counter）将显示在Web UI中，
+  * * 用于修改该累加器的阶段。Spark显示“任务”表中任务修改的每个累加器的值。
   * * @Author LYleonard
   * * @Date 2019/9/17 14:25
   **/
 object AccumulatorVariable {
   def main(args: Array[String]): Unit = {
     //errorAccumulatorOps()
-    accumulatorOps()
+    //accumulatorOps()
+    accumulatorOps2()
   }
 
   def errorAccumulatorOps(): Unit = {
@@ -26,7 +28,6 @@ object AccumulatorVariable {
 
     val accum= sc.accumulator(0, "Error Accumulator")
     val data = sc.parallelize(1 to 10)
-
     //用accumulator统计偶数出现的次数，同时偶数返回0，奇数返回1
     val newData = data.map{x => {
       if(x%2 == 0){
@@ -59,7 +60,6 @@ object AccumulatorVariable {
 
     val accum= sc.accumulator(0, "Error Accumulator")
     val data = sc.parallelize(1 to 10)
-
     val newData = data.map{x => {
       if(x%2 == 0){
         accum += 1
@@ -76,5 +76,17 @@ object AccumulatorVariable {
 
     //此时的accum依旧是5
     println("Second print: " + accum.value)
+  }
+
+  def accumulatorOps2(): Unit = {
+    val conf: SparkConf = new SparkConf().setAppName("accumulatorOps").setMaster("local")
+    val sc: SparkContext= new SparkContext(conf)
+
+    val sum = sc.longAccumulator("accumulator V2")
+    val numbers = Array(1, 2, 3, 4, 5)
+    val numberRDD = sc.parallelize(numbers)
+    numberRDD.foreach(num => sum.add(num))
+
+    println("accumulator sum = " + sum.value)
   }
 }
