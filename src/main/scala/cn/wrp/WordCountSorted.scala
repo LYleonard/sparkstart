@@ -1,5 +1,6 @@
 package cn.wrp
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -16,11 +17,11 @@ object WordCountSorted {
     val conf: SparkConf = new SparkConf().setAppName("WordCountSorted").setMaster("local")
     val sc: SparkContext = new SparkContext(conf)
 
-    val lines = sc.textFile("file:///E:\\develop\\Spark\\sparkstart\\src\\test\\scala\\cn\\wrp\\wordcount.txt")
-    val words = lines.flatMap(x => x.split(" "))
-    val wordcounts = words.map(word => (word, 1)).reduceByKey(_ + _)
+    val lines: RDD[String] = sc.textFile("file:///E:\\develop\\Spark\\sparkstart\\src\\test\\scala\\cn\\wrp\\wordcount.txt")
+    val words: RDD[String]= lines.flatMap(x => x.split(" "))
+    val wordcounts: RDD[(String, Int)] = words.map(word => (word, 1)).reduceByKey(_ + _)
 
-    val result = wordcounts.map(count => (count._2, count._1)).sortByKey(false)
+    val result: RDD[(Int, String)] = wordcounts.map(count => (count._2, count._1)).sortByKey(false)
 //      .map(x => (x._2, x._1))
 //    result.foreach(x => println(x._1 + ": " + x._2))
     result.foreach(x => println(x._2 + ": " + x._1))
