@@ -1,0 +1,7 @@
+storm 50
+flink 78
+scala 20
+hive 60
+mapreduce 22
+flume 73
+spark 89

@@ -1,0 +1,23 @@
+storm 50
+flink 78
+scala 20
+hive 60
+mapreduce 22
+flume 73
+spark 89
+
+storm 52
+flink 76
+scala 21
+hive 68
+mapreduce 29
+flume 77
+spark 90
+
+storm 80
+flink 89
+scala 23
+hive 65
+mapreduce 38
+flume 72
+spark 88
