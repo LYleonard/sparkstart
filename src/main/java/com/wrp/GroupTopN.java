@@ -70,12 +70,12 @@ public class GroupTopN {
                     Iterator<Integer> scores = stringIterableTuple2._2.iterator();
                    while (scores.hasNext()){
                        Integer score = scores.next();
-                       for(int i = 0; i < 3; i++) {
+                       for(int i = 0; i < topN; i++) {
                            if(topn[i] == null) {
                                topn[i] = score;
                                break;
                            } else if(score > topn[i]) {
-                               for(int j = 2; j > i; j--) {
+                               for(int j = topN-1; j > i; j--) {
                                    topn[j] = topn[j - 1];
                                }
                                topn[i] = score;
