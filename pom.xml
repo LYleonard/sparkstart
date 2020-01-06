@@ -96,6 +96,12 @@
             <version>2.8.3</version>
             <type>jar</type>
         </dependency>
+
+        <dependency>
+            <groupId>com.springml</groupId>
+            <artifactId>spark-sftp_2.11</artifactId>
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
