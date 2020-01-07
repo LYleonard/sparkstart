@@ -22,13 +22,13 @@ object ReadFromFTP {
       option("header", "false").
       option("password", "cetc@2017").
       option("fileType", "csv").
-      option("delimiter", ",").
+      option("delimiter", "|").
 //      option("quote", "\"").
       option("createDF", "true").
 //      option("escape", "\\").
       option("multiLine", "true").
       option("inferSchema", "true").
-      load("/home/ftpuser/pub/testftp/") //系统目录，不是ftp的访问的根目录
+      load("/root/testftp/test.csv") //系统目录，不是ftp的访问的根目录
 
     df.show()
 
