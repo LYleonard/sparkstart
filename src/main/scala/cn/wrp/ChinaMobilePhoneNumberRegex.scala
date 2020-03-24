@@ -1,5 +1,6 @@
 package cn.wrp
 
+import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
 
 /**
@@ -11,6 +12,9 @@ object ChinaMobilePhoneNumberRegex {
   def main(args: Array[String]): Unit = {
     val sparkSession: SparkSession = SparkSession.builder().
       appName("ChinaMobilePhoneNumberFilter").master("local[*]").getOrCreate()
+    // 日志级别设置测试
+//    sparkSession.sparkContext.setLogLevel("ERROR")
+    Logger.getLogger("org.apache.spark").setLevel(Level.WARN);
 
     val phonesDF = sparkSession.read.option("header", "true").csv("E:\\develop\\Spark\\sparkstart\\src\\test\\scala\\cn\\wrp\\phones.csv")
     val purePhonesDF = phonesDF.filter(x=>{
