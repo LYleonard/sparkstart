@@ -66,8 +66,12 @@ class MultiDelimiterParse(@transient spark: SparkSession){
     val fields = schemaString.split(",").map(fieldName => StructField(fieldName, StringType, nullable = true))
     val schema = StructType(fields)
 
+    val aa = rdd.filter(_!="")
+    val bb = aa.map(_.split(mutidelimiter, -1))
+    val cc = bb.filter(line => line(0)!=fields(0).name)
+
     // 3.把schema信息作用到RDD上,这个RDD里包含了一些行,形成Row类型的RDD
-    val rowRDD = rdd.filter(_!="").map(_.split(mutidelimiter))
+    val rowRDD = rdd.filter(_!="").map(_.split(mutidelimiter, -1))
       .filter(line => line(0)!=fields(0).name && line.length==fields.length)//过滤列宽对不齐的数据
       .map(x => Row.fromSeq(x.toSeq))
 
@@ -99,7 +103,7 @@ class MultiDelimiterParse(@transient spark: SparkSession){
     val b = rdd.map(record=>record._2).map(lines=>lines.split("\r\n")).flatMap(lines=>lines).filter(_!= "")
       .map(x => x.split(mutidelimiter))
     val c = rdd.map(record=>record._2).map(lines=>lines.split("\r\n")).flatMap(lines=>lines).filter(_!= "")
-      .map(x => x.split(mutidelimiter)).filter(_.length==fieldsLength)
+      .map(x => x.split(mutidelimiter, -1)).filter(_.length==fieldsLength)
       .map(lines => {print(lines.toSeq);Row.fromSeq(lines.toSeq)})
     val DF1 = spark.createDataFrame(c,schema)
     DF1.show(12)*/
@@ -108,7 +112,7 @@ class MultiDelimiterParse(@transient spark: SparkSession){
       .map(lines=>lines.split("\r\n"))
       .flatMap(lines=>lines)
       .filter(_!= "")//去空行
-      .map(x => x.split(mutidelimiter))
+      .map(x => x.split(mutidelimiter, -1))
       .filter(_.length==fieldsLength)//过滤列宽对不齐的数据
       .map(fields => Row.fromSeq(fields.toSeq))
 
