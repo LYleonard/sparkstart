@@ -1,7 +1,7 @@
-package cn.wrp
+package cn.wrp.operation
 
+import org.apache.spark.sql.functions.lit
 import org.apache.spark.sql.{SaveMode, SparkSession}
-import org.apache.spark.sql.functions._
 
 /**
   * @Author LYleonard
@@ -15,8 +15,6 @@ object Spark2OrcPartition {
       .enableHiveSupport()            // spark读写hive表配置
       .config("hive.exec.dynamic.partition.mode", "nonstrict")
       .getOrCreate()
-
-    import sparkSession.implicits._
     val DF = sparkSession.read.option("header","true").csv("hdfs://192.168.29.129:9000/test/phones.csv")
 
     // test.phone_orc表以level列字段分区

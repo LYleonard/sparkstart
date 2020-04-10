@@ -1,4 +1,4 @@
-package cn.wrp
+package cn.wrp.operation
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}

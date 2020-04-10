@@ -1,10 +1,10 @@
-package cn.wrp
+package cn.wrp.operation
 
 import java.util.Properties
 
 import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.collection.SortedMap

@@ -1,8 +1,8 @@
-package cn.wrp
+package cn.wrp.operation
 
 import java.util.Properties
 
-import org.apache.spark.sql.{DataFrame, Dataset, SaveMode, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 /**
   * 通过JDBC连接Mysql数据库，查询表，获取DataFrame.需要在pom.xml中添加mysql JDBC驱动

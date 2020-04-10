@@ -1,7 +1,12 @@
-package cn.wrp
+package cn.wrp.operation
 
 import org.apache.spark.{SparkConf, SparkContext}
 
+/**
+  * @Author LYleonard
+  * @Date 2020/4/10 20:49
+  * @Description TODO
+  */
 object WordCount {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setMaster("local").setAppName("WordCount")
