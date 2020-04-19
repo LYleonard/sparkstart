@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<table>
+	<rows>
+		<row>
+			<item name="sepal_length">4.8</item>
+			<item name="sepal_width">3.4</item>
+			<item name="petal_length">1.9</item>
+			<item name="petal_width">0.2</item>
+			<item name="class">Iris-setosa25-14</item>
+		</row>
+		<row>
+			<item name="sepal_length">5</item>
+			<item name="sepal_width">3</item>
+			<item name="petal_length">1.6</item>
+			<item name="petal_width">0.2</item>
+			<item name="class">IIris-setosa26-14</item>
+		</row>
+		<row>
+			<item name="sepal_length">5.2</item>
+			<item name="sepal_width">3.5</item>
+			<item name="petal_length">1.5</item>
+			<item name="petal_width">0.2</item>
+			<item name="class">Iris-setosa28-14</item>
+		</row>
+		<row>
+			<item name="sepal_length">5.2</item>
+			<item name="sepal_width">3.4</item>
+			<item name="petal_length">1.4</item>
+			<item name="petal_width">0.2</item>
+			<item name="class">Iris-setosa29-14</item>
+		</row>
+	</rows>
+</table>

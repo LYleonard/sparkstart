@@ -6,7 +6,12 @@
 
     <groupId>cn.wrp</groupId>
     <artifactId>sparkstart</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>xml2csv</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
