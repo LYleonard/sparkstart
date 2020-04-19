@@ -130,8 +130,8 @@ public class Xml2CsvMultiThread extends Thread {
 
         String fileType = "hw";
 
-        String filepath = "E:\\develop\\Java\\xml2csv\\src\\test\\java\\hw\\";
-        String outpath = "E:\\develop\\Java\\xml2csv\\src\\test\\java\\src\\";
+        String filepath = "E:\\develop\\Spark\\sparkstart\\xml2csv\\src\\test\\java\\hw\\";
+        String outpath = "E:\\develop\\Spark\\sparkstart\\xml2csv\\src\\test\\java\\src\\";
 
         String[] fields;
         if ("hw".equals(fileType)) {
